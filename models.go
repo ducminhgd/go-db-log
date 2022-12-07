@@ -5,7 +5,7 @@ import "time"
 type Timestamp time.Time
 
 type EventLog struct {
-	ID         string    `gorm:"primarykey,column:name"`
+	ID         string    `gorm:"primarykey,column:id"`
 	EventType  string    `gorm:"column:event_type"`
 	ObjectType string    `gorm:"column:object_type"`
 	ObjectID   string    `gorm:"column:object_id"`
