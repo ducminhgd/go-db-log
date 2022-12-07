@@ -16,4 +16,4 @@ This kind of logging is used for records history of creating or changing data.
 | actor_id    |  String   |   Yes    |   Yes    |     No      | ID of actor, who made action                                                |
 | data        |  String   |    No    |   Yes    |     Yes     | Changed or created data                                                     |
 | result      |  Integer  |   Yes    |    No    |     No      | `0`: failed, `1`: success. Default `1`                                      |
-| timestamp   | Timestamp |   Yes    |    No    |     No      | Timestamp when an event is created                                          |
+| timestamps  | Timestamp |   Yes    |    No    |     No      | Timestamp when an event is created                                          |
