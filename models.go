@@ -36,7 +36,7 @@ type EventLogs []*EventLog
 
 type Clause func(tx *gorm.DB)
 
-func NewEventLog(ID *string, eventType, objectType, objectId, actorType, actoryId, data string, result int32, t *time.Time) EventLog {
+func NewEventLog(ID *string, eventType, objectType, objectId, actorType, actoryId, data string, result int32, t *time.Time) *EventLog {
 	var idValue string
 	if ID == nil {
 		idValue = uuid.New().String()
@@ -51,7 +51,7 @@ func NewEventLog(ID *string, eventType, objectType, objectId, actorType, actoryI
 		timeValue = *t
 	}
 
-	return EventLog{
+	return &EventLog{
 		ID:         idValue,
 		EventType:  eventType,
 		ObjectType: objectType,
