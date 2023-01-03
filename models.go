@@ -4,19 +4,20 @@ import (
 	"time"
 
 	"github.com/google/uuid"
+	"gorm.io/datatypes"
 	"gorm.io/gorm"
 )
 
 type EventLog struct {
-	ID         string    `gorm:"primarykey,column:id" json:"id"`
-	EventType  string    `gorm:"column:event_type" json:"eventType"`
-	ObjectType string    `gorm:"column:object_type" json:"objectType"`
-	ObjectID   string    `gorm:"column:object_id" json:"objectID"`
-	ActorType  string    `gorm:"column:actor_type" json:"actorType"`
-	ActorID    string    `gorm:"column:actor_id" json:"actorID"`
-	Data       string    `gorm:"column:data" json:"data"`
-	Result     int32     `gorm:"column:result" json:"result"`
-	Timestamp  time.Time `gorm:"column:timestamp" json:"timestamp"`
+	ID         string         `gorm:"primarykey,column:id" json:"id"`
+	EventType  string         `gorm:"column:event_type" json:"eventType"`
+	ObjectType string         `gorm:"column:object_type" json:"objectType"`
+	ObjectID   string         `gorm:"column:object_id" json:"objectID"`
+	ActorType  string         `gorm:"column:actor_type" json:"actorType"`
+	ActorID    string         `gorm:"column:actor_id" json:"actorID"`
+	Data       datatypes.JSON `gorm:"column:data" json:"data"`
+	Result     int32          `gorm:"column:result" json:"result"`
+	Timestamp  time.Time      `gorm:"column:timestamp" json:"timestamp"`
 }
 
 type QueryParams struct {

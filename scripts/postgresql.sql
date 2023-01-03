@@ -6,7 +6,7 @@ CREATE TABLE public."event_log" (
     "object_id" VARCHAR(100) NOT NULL,
     "actor_type" VARCHAR(100) NOT NULL,
     "actor_id" VARCHAR(100) NOT NULL,
-    "data" TEXT NULL,
+    "data" JSONB NULL,
     "result" SMALLINT NOT NULL DEFAULT 1,
     "timestamps" TIMESTAMP  NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY ("id")
