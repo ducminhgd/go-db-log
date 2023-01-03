@@ -3,6 +3,7 @@ package models
 import (
 	"time"
 
+	"github.com/google/uuid"
 	"gorm.io/gorm"
 )
 
@@ -35,6 +36,34 @@ type EventLogs []*EventLog
 
 type Clause func(tx *gorm.DB)
 
+func NewEventLog(ID *string, eventType, objectType, objectId, actorType, actoryId, data string, result int32, t *time.Time) EventLog {
+	var idValue string
+	if ID == nil {
+		idValue = uuid.New().String()
+	} else {
+		idValue = *ID
+	}
+
+	var timeValue time.Time
+	if t == nil {
+		timeValue = time.Now()
+	} else {
+		timeValue = *t
+	}
+
+	return EventLog{
+		ID:         idValue,
+		EventType:  eventType,
+		ObjectType: objectType,
+		ObjectID:   objectId,
+		ActorType:  actorType,
+		ActorID:    actoryId,
+		Data:       data,
+		Result:     result,
+		Timestamp:  timeValue,
+	}
+}
+
 func Create(db *gorm.DB, el *EventLog) (*EventLog, error) {
 	err := db.Model(&EventLog{}).Create(el).Error
 	return el, err
@@ -43,5 +72,5 @@ func Create(db *gorm.DB, el *EventLog) (*EventLog, error) {
 func Count(db *gorm.DB, params QueryParams) (int64, error) {
 	var count int64
 	tx := db.Model(&EventLogs{}).Count(&count)
-	return count, tx.err
+	return count, tx.Error
 }
